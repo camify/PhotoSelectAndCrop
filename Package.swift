@@ -7,12 +7,13 @@ let package = Package(
     name: "PhotoSelectAndCrop",
     defaultLocalization: "en",
     platforms: [
-        .iOS("16.0")
+        .iOS("16.0"),
     ],
     products: [
         .library(
             name: "PhotoSelectAndCrop",
-            targets: ["PhotoSelectAndCrop"]),
+            targets: ["PhotoSelectAndCrop"]
+        ),
     ],
     dependencies: [
     ],
@@ -21,6 +22,7 @@ let package = Package(
             name: "PhotoSelectAndCrop",
             dependencies: [],
             path: "Sources",
-            resources: [.process("PhotoSelectAndCrop/Resources")]),
+            resources: [.process("PhotoSelectAndCrop/Resources")]
+        ),
     ]
 )
