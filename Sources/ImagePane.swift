@@ -16,7 +16,7 @@ public struct ImagePane: View {
     @Binding var isEditMode: Bool
     
     var renderingMode: SymbolRenderingMode = .monochrome
-    var isInline? = false;
+    var isInline: Bool = false
     var colors: [Color] = []
     var linearGradient: LinearGradient = LinearGradient(colors: [], startPoint: .topLeading, endPoint: .bottomTrailing)
     var isGradient: Bool = false
