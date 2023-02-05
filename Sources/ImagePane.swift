@@ -71,10 +71,10 @@ public struct ImagePane: View {
         
         VStack {
             displayImage
+            if isInline! {
                 Button  {
                     self.isShowingPhotoSelectionSheet = true
                 }, label: {
-                    if isInline! {
                         Text("Update")
                             .font(.footnote)
                             .foregroundColor(Color.accentColor)
