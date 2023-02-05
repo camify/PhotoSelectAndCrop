@@ -102,30 +102,3 @@ public struct ImagePane: View {
            // .shadow(radius: (imageAttributes.originalImage == nil) ? 0 : 4)
     }
 }
-
-struct ImagePane_Previews: PreviewProvider {
-
-    static var previews: some View {
-
-        let placeholder = ImageAttributes(withSFSymbol: "photo.circle")
-        let size = 150.0
-        ImagePane(image: placeholder, isEditMode: .constant(true))
-            .frame(width: size, height: size, alignment: .center)
-            .foregroundColor(.pink.opacity(0.25))
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .background(.white)
-
-        ImagePane(image: placeholder, isEditMode: .constant(false), renderingMode: .palette, colors: [.blue, .white])
-            .frame(width: size, height: size, alignment: .center)
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .background(.gray)
-        
-        ImagePane(image: placeholder, isEditMode: .constant(true), renderingMode: .monochrome, linearGradient: LinearGradient(colors: [.yellow, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
-            .frame(width: size, height: size, alignment: .center)
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .background(.black)
-    }
-}
