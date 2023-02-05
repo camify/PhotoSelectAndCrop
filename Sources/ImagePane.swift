@@ -71,7 +71,7 @@ public struct ImagePane: View {
         
         VStack {
             displayImage
-            if isInline {
+            if isInline == false {
                 Button  {
                     self.isShowingPhotoSelectionSheet = true
                 } label: {
@@ -79,7 +79,6 @@ public struct ImagePane: View {
                             .font(.footnote)
                             .foregroundColor(Color.accentColor)
                     }   .opacity(isEditMode ? 1.0 : 0.0)
-                }
         }
         .fullScreenCover(isPresented: $isShowingPhotoSelectionSheet) {
             ImageMoveAndScaleSheet(imageAttributes: imageAttributes)
