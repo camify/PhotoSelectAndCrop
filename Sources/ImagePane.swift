@@ -13,7 +13,7 @@ public struct ImagePane: View {
     
     @ObservedObject public var imageAttributes: ImageAttributes
     
-    @Binding var isEditMode: Bool
+    var isEditMode: Bool
     
     var renderingMode: SymbolRenderingMode = .monochrome
     var colors: [Color] = []
