@@ -63,13 +63,15 @@ public struct ImagePane: View {
         
         VStack {
             displayImage
-            Button (action: {
-                self.isShowingPhotoSelectionSheet = true
-            }, label: {
+            if isEditMode! {
+                Button (action: {
+                    self.isShowingPhotoSelectionSheet = true
+                }, label: {
                     Text("Update")
                         .font(.footnote)
                         .foregroundColor(Color.accentColor)
-            })  .opacity(isEditMode ? 1.0 : 0.0)
+                })  .opacity(isEditMode ? 1.0 : 0.0)
+            }
         }
         .fullScreenCover(isPresented: $isShowingPhotoSelectionSheet) {
             ImageMoveAndScaleSheet(imageAttributes: imageAttributes)

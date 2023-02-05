@@ -56,7 +56,6 @@ extension ImageMoveAndScaleSheet {
     
     ///Positions the image selected to fit the screen.
     func resetImageOriginAndScale() {
-        print("reposition")
         let screenAspect: CGFloat = getAspect()
 
         withAnimation(.easeInOut){
@@ -119,39 +118,33 @@ extension ImageMoveAndScaleSheet {
         ///The following if statements keep the image filling the circle cutout in at least one dimension.
         if displayH >= diameter {
             if newPosition.height > verticalOffset {
-                print("1. newPosition.height > verticalOffset")
                     newPosition = CGSize(width: newPosition.width, height: verticalOffset - adjust + inset)
                     currentPosition = CGSize(width: newPosition.width, height: verticalOffset - adjust + inset)
             }
             
             if newPosition.height < ( verticalOffset * -1) {
-                print("2. newPosition.height < ( verticalOffset * -1)")
                     newPosition = CGSize(width: newPosition.width, height: ( verticalOffset * -1) - adjust - inset)
                     currentPosition = CGSize(width: newPosition.width, height: ( verticalOffset * -1) - adjust - inset)
             }
             
         } else {
-            print("else: H")
                 newPosition = CGSize(width: newPosition.width, height: 0)
                 currentPosition = CGSize(width: newPosition.width, height: 0)
         }
         
         if displayW >= diameter {
             if newPosition.width > horizontalOffset {
-                print("3. newPosition.width > horizontalOffset")
                     newPosition = CGSize(width: horizontalOffset + inset, height: newPosition.height)
                     currentPosition = CGSize(width: horizontalOffset + inset, height: currentPosition.height)
             }
             
             if newPosition.width < ( horizontalOffset * -1) {
-                print("4. newPosition.width < ( horizontalOffset * -1)")
                     newPosition = CGSize(width: ( horizontalOffset * -1) - inset, height: newPosition.height)
                     currentPosition = CGSize(width: ( horizontalOffset * -1) - inset, height: currentPosition.height)
 
             }
             
         } else {
-            print("else: W")
                 newPosition = CGSize(width: 0, height: newPosition.height)
                 currentPosition = CGSize(width: 0, height: newPosition.height)
         }
