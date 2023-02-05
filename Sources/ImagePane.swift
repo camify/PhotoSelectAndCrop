@@ -15,9 +15,6 @@ public struct ImagePane: View {
     
     @Binding var isEditMode: Bool
     
-    @State private var addPhotoButtonLabel = NSLocalizedString("Add photo", comment: "indicate that a photo is not available and one should be added")
-    @State private var changePhotoButtonLabel = NSLocalizedString("Change photo", comment: "indicate that a photo is available and may be changed to another")
-    
     var renderingMode: SymbolRenderingMode = .monochrome
     var colors: [Color] = []
     var linearGradient: LinearGradient = LinearGradient(colors: [], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -60,8 +57,6 @@ public struct ImagePane: View {
     private init(addPhotoText: String, changePhotoText: String, image: ImageAttributes, defaultImage: UIImage, isEditMode: Binding<Bool>) {
         self._imageAttributes = ObservedObject(initialValue: image)
         self._isEditMode = isEditMode
-        self.addPhotoButtonLabel = addPhotoText
-        self.changePhotoButtonLabel = changePhotoText
     }
     
     public var body: some View {
@@ -71,17 +66,10 @@ public struct ImagePane: View {
             Button (action: {
                 self.isShowingPhotoSelectionSheet = true
             }, label: {
-                if imageAttributes.originalImage != nil {
-                    Text(changePhotoButtonLabel)
+                    Text("Update")
                         .font(.footnote)
                         .foregroundColor(Color.accentColor)
-                } else {
-                    Text(addPhotoButtonLabel)
-                        .font(.footnote)
-                        .foregroundColor(Color.accentColor)
-                }
-            })
-                .opacity(isEditMode ? 1.0 : 0.0)
+            })  .opacity(isEditMode ? 1.0 : 0.0)
         }
         .fullScreenCover(isPresented: $isShowingPhotoSelectionSheet) {
             ImageMoveAndScaleSheet(imageAttributes: imageAttributes)
@@ -101,7 +89,7 @@ public struct ImagePane: View {
             .scaledToFill()
             .aspectRatio(contentMode: .fit)
             .clipShape(Circle())
-            .shadow(radius: (imageAttributes.originalImage == nil) ? 0 : 4)
+           // .shadow(radius: (imageAttributes.originalImage == nil) ? 0 : 4)
     }
 }
 
