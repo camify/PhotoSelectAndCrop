@@ -19,51 +19,29 @@ public struct ImagePane: View {
     var colors: [Color] = []
     var linearGradient: LinearGradient = .init(colors: [], startPoint: .topLeading, endPoint: .bottomTrailing)
     var isGradient: Bool = false
+    var clipShape: Shape
     /// A UIImage that is retrieved to be sent to the finalImage and displayed.
     /// It may be retrieved from the originalImage if one has been
     /// saved previously. Or it may be retrieved
     /// from the ImageMoveAndScaleSheet.
     @State private var inputImage: UIImage?
 
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, isInline: Bool) {
+    public init(image: ImageAttributes, isEditMode: Binding<Bool>, isInline: Bool, clipShape: Shape) {
         _imageAttributes = ObservedObject(initialValue: image)
         _isEditMode = isEditMode
         self.isInline = isInline
+        self.clipShape = clipShape
     }
 
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, isInline: Bool) {
-        _imageAttributes = ObservedObject(initialValue: image)
-        _isEditMode = isEditMode
-        self.renderingMode = renderingMode
-        self.isInline = isInline
-    }
-
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, colors: [Color], isInline: Bool) {
+    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, isInline: Bool , clipShape: Shape) {
         _imageAttributes = ObservedObject(initialValue: image)
         _isEditMode = isEditMode
         self.renderingMode = renderingMode
         self.isInline = isInline
-        self.colors = []
-        for color in colors {
-            self.colors.append(color)
-        }
+        self.clipShape = clipShape
     }
 
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, linearGradient: LinearGradient, isInline: Bool) {
-        _imageAttributes = ObservedObject(initialValue: image)
-        _isEditMode = isEditMode
-        self.renderingMode = renderingMode
-        self.linearGradient = linearGradient
-        self.isInline = isInline
-        isGradient = true
-    }
-
-    private init(addPhotoText _: String, changePhotoText _: String, image: ImageAttributes, defaultImage _: UIImage, isEditMode: Binding<Bool>, isInline: Bool) {
-        _imageAttributes = ObservedObject(initialValue: image)
-        _isEditMode = isEditMode
-        self.isInline = isInline
-    }
-
+    
     public var body: some View {
         VStack {
             displayImage
@@ -93,7 +71,7 @@ public struct ImagePane: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .scaledToFill()
             .aspectRatio(contentMode: .fit)
-           // .clipShape(Circle())
+            .clipShape(clipShape)
         // .shadow(radius: (imageAttributes.originalImage == nil) ? 0 : 4)
     }
 }
