@@ -12,7 +12,7 @@ struct ImageMoveAndScaleSheet: View {
     @Environment(\.verticalSizeClass) var sizeClass
 
     @StateObject var orientation = DeviceOrientation()
-
+    
     @StateObject var viewModel: ImageMoveAndScaleSheet.ViewModel
 
     var imageAttributes: ImageAttributes
@@ -54,7 +54,7 @@ struct ImageMoveAndScaleSheet: View {
     @State var newPosition: CGSize = .zero
     @State var horizontalOffset: CGFloat = 0.0
     @State var verticalOffset: CGFloat = 0.0
-
+ //   @State var shape:Shape = Rectangle()
     // Local variables
 
     /// A CGFloat used to "pad" the circle set into the view.

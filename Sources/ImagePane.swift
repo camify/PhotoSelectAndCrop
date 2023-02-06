@@ -93,7 +93,7 @@ public struct ImagePane: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .scaledToFill()
             .aspectRatio(contentMode: .fit)
-            .clipShape(Circle())
+           // .clipShape(Circle())
         // .shadow(radius: (imageAttributes.originalImage == nil) ? 0 : 4)
     }
 }
