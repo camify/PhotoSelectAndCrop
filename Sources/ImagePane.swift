@@ -26,14 +26,14 @@ public struct ImagePane: View {
     /// from the ImageMoveAndScaleSheet.
     @State private var inputImage: UIImage?
 
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, isInline: Bool, clipShape: Shape) {
+    public init(image: ImageAttributes, isEditMode: Binding<Bool>, isInline: Bool, clipShape: AnyShape) {
         _imageAttributes = ObservedObject(initialValue: image)
         _isEditMode = isEditMode
         self.isInline = isInline
         self.clipShape = clipShape
     }
 
-    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, isInline: Bool , clipShape: Shape) {
+    public init(image: ImageAttributes, isEditMode: Binding<Bool>, renderingMode: SymbolRenderingMode, isInline: Bool , clipShape: AnyShape) {
         _imageAttributes = ObservedObject(initialValue: image)
         _isEditMode = isEditMode
         self.renderingMode = renderingMode
