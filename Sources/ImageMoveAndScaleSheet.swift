@@ -16,10 +16,11 @@ struct ImageMoveAndScaleSheet: View {
     @StateObject var viewModel: ImageMoveAndScaleSheet.ViewModel
 
     var imageAttributes: ImageAttributes
-
-    init(viewModel: ViewModel = .init(), imageAttributes: ImageAttributes) {
+    var _clipShape: AnyShape
+    init(viewModel: ViewModel = .init(), imageAttributes: ImageAttributes, clipShape: AnyShape) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.imageAttributes = imageAttributes
+        self._clipShape clipShape
     }
 
     @State private var isShowingImagePicker = false
@@ -98,7 +99,7 @@ struct ImageMoveAndScaleSheet: View {
 
             Rectangle()
                 .fill(Color.black).opacity(0.55)
-                .mask(HoleShapeMask().fill(style: FillStyle(eoFill: true)))
+                .mask(ShapeMask(self._clipShape).fill(style: FillStyle(eoFill: true)))
 
             VStack {
                 Text((viewModel.originalImage != nil) ? viewModel.moveAndScale : viewModel.selectPhoto)
@@ -194,11 +195,11 @@ struct ImageMoveAndScaleSheet: View {
     /// - Parameter rect: a CGRect filling the device screen.
     ///
     /// Code for mask obtained from [StackOVerflow](https://stackoverflow.com/questions/59656117/swiftui-add-inverted-mask)
-    func HoleShapeMask() -> Path {
+    func ShapeMask() -> Path {
         let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         let insetRect = CGRect(x: inset, y: inset, width: UIScreen.main.bounds.width - (inset * 2), height: UIScreen.main.bounds.height - (inset * 2))
         var shape = Rectangle().path(in: rect)
-        shape.addPath(Circle().path(in: insetRect))
+        shape.addPath(self._clipShape.path(in: insetRect))
         return shape
     }
 
