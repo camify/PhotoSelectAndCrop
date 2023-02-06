@@ -40,7 +40,6 @@ public struct ImagePane: View {
         self.isInline = isInline
         self.clipShape = clipShape
     }
-
     
     public var body: some View {
         VStack {
@@ -56,7 +55,7 @@ public struct ImagePane: View {
             }
 
         }.fullScreenCover(isPresented: $isShowingPhotoSelectionSheet) {
-            ImageMoveAndScaleSheet(imageAttributes: imageAttributes, clipShape: _clipShape)
+            ImageMoveAndScaleSheet(imageAttributes: imageAttributes, clipShape: clipShape)
         }
     }
 

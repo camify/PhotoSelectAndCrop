@@ -99,7 +99,7 @@ struct ImageMoveAndScaleSheet: View {
 
             Rectangle()
                 .fill(Color.black).opacity(0.55)
-                .mask(ShapeMask(self._clipShape).fill(style: FillStyle(eoFill: true)))
+                .mask(ShapeMask().fill(style: FillStyle(eoFill: true)))
 
             VStack {
                 Text((viewModel.originalImage != nil) ? viewModel.moveAndScale : viewModel.selectPhoto)
@@ -199,7 +199,7 @@ struct ImageMoveAndScaleSheet: View {
         let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         let insetRect = CGRect(x: inset, y: inset, width: UIScreen.main.bounds.width - (inset * 2), height: UIScreen.main.bounds.height - (inset * 2))
         var shape = Rectangle().path(in: rect)
-        shape.addPath(self._clipShape.path(in: insetRect))
+        shape.addPath(self._c  lipShape.path(in: insetRect))
         return shape
     }
 
