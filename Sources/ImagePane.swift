@@ -19,7 +19,7 @@ public struct ImagePane: View {
     var colors: [Color] = []
     var linearGradient: LinearGradient = .init(colors: [], startPoint: .topLeading, endPoint: .bottomTrailing)
     var isGradient: Bool = false
-    var clipShape: Shape
+    var clipShape: AnyShape
     /// A UIImage that is retrieved to be sent to the finalImage and displayed.
     /// It may be retrieved from the originalImage if one has been
     /// saved previously. Or it may be retrieved
