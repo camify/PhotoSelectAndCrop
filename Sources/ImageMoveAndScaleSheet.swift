@@ -20,7 +20,7 @@ struct ImageMoveAndScaleSheet: View {
     init(viewModel: ViewModel = .init(), imageAttributes: ImageAttributes, clipShape: AnyShape) {
         _viewModel = StateObject(wrappedValue: viewModel)
         self.imageAttributes = imageAttributes
-        self._clipShape clipShape
+        self._clipShape = clipShape
     }
 
     @State private var isShowingImagePicker = false
@@ -242,6 +242,6 @@ struct ImageMoveAndScaleSheet: View {
 struct ImageMoveAndScaleSheet_Previews: PreviewProvider {
     static var previews: some View {
         ImageMoveAndScaleSheet(viewModel: ImageMoveAndScaleSheet.ViewModel(),
-                               imageAttributes: ImageAttributes(withSFSymbol: "photo.circle.fill"))
+                               imageAttributes: ImageAttributes(withSFSymbol: "photo.circle.fill"), clipShape: AnyShape(shape: Rectangle()))
     }
 }
