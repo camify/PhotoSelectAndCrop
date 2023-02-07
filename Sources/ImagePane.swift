@@ -43,7 +43,7 @@ public struct ImagePane: View {
     
     public var body: some View {
         VStack {
-            displayImage
+            displayImage.border(Color.blue)
             if isInline == false {
                 Button {
                     self.isShowingPhotoSelectionSheet = true
