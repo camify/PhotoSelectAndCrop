@@ -199,7 +199,7 @@ struct ImageMoveAndScaleSheet: View {
         let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         let insetRect = CGRect(x: inset, y: inset, width: UIScreen.main.bounds.width - (inset * 2), height: UIScreen.main.bounds.height - (inset * 2))
         var shape = Rectangle().path(in: rect)
-        shape.addPath(self._c  lipShape.path(in: insetRect))
+        shape.addPath(self._clipShape.path(in: insetRect))
         return shape
     }
 
@@ -236,12 +236,5 @@ struct ImageMoveAndScaleSheet: View {
         { Text(viewModel.usePhoto) }
             .opacity((viewModel.originalImage != nil) ? 1.0 : 0.2)
             .disabled((viewModel.originalImage != nil) ? false : true)
-    }
-}
-
-struct ImageMoveAndScaleSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageMoveAndScaleSheet(viewModel: ImageMoveAndScaleSheet.ViewModel(),
-                               imageAttributes: ImageAttributes(withSFSymbol: "photo.circle.fill"), clipShape: AnyShape(shape: Rectangle()))
     }
 }
